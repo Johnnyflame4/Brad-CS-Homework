@@ -458,17 +458,8 @@ def find_accessible_gray_background(text_r: int, text_g: int, text_b: int) -> in
         gray -= RGB_INCREMENT
     return darkest_valid_gray if darkest_valid_gray != 255 else 255
 
-def main():
 
-    ratio = contrast_ratio(255, 0, 63, 127, 127, 0)
-    print(passes_wcag_level(ratio, "AA_NORMAL"))
-    print(passes_wcag_level(ratio, "AA_LARGE"))
-    print(passes_wcag_level(ratio, "AAA_NORMAL"))
-    print(passes_wcag_level(ratio, "AAA_LARGE"))
-
-    
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod(verbose=True)
-main()
