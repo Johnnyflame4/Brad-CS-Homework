@@ -122,9 +122,9 @@ def convert_rating(val: int, min_stars: int = __MIN_STARS, max_stars: int = __MA
     min_stars = 1
     max_stars = 5
     if val <= min_stars:
-        return '*'
+        return '*' * min_stars
     elif val >= max_stars:
-        return '*****'
+        return '*' * max_stars
     else:
         return '*' * val
 
@@ -166,26 +166,29 @@ def check_filter(movie: Tuple[str, int], filter: str) -> bool:
         bool: True the movie meets the filter requirements.
     """
     filter = filter.strip()
-    movie, rating = movie
+    movie_title, rating = movie
+    
     if filter == '':
         return True
-    elif filter[0] in __FILTER_OPERATION_OPTIONS:
-        operation, number = filter.split()
-        number = int(number)
-        if operation == '<':
-            return rating < number
-        elif operation == '>':
-            return rating > number
-        elif operation == '=':
-            return rating == number
-        elif operation == '<=':
-            return rating <= number
-        elif operation == '>=':
-            return rating >= number
-        elif operation == '!=':
-            return rating != number
-    else:
-        return filter.lower() in movie.lower()
+    
+    parts = filter.split()
+    if len(parts) == 2:
+        operation, number_str = parts
+        if operation in __FILTER_OPERATION_OPTIONS:
+            number = int(number_str)
+            if operation == '<':
+                return rating < number
+            elif operation == '>':
+                return rating > number
+            elif operation == '=':
+                return rating == number
+            elif operation == '<=':
+                return rating <= number
+            elif operation == '>=':
+                return rating >= number
+            elif operation == '!=':
+                return rating != number
+    return filter.lower() in movie_title.lower()
 
 
 def print_movies(movies: List[Tuple[str, int]], filter: str = '', spacer: int = __SPACER, max_stars: int = __MAX_STARS) -> None:
