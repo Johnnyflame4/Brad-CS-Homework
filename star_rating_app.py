@@ -119,8 +119,6 @@ def convert_rating(val: int, min_stars: int = __MIN_STARS, max_stars: int = __MA
     Returns:
         str: stars between min_stars and max_stars
     """
-    min_stars = 1
-    max_stars = 5
     if val <= min_stars:
         return '*' * min_stars
     elif val >= max_stars:
@@ -167,10 +165,10 @@ def check_filter(movie: Tuple[str, int], filter: str) -> bool:
     """
     filter = filter.strip()
     movie_title, rating = movie
-    
+
     if filter == '':
         return True
-    
+
     parts = filter.split()
     if len(parts) == 2:
         operation, number_str = parts
