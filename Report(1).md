@@ -16,15 +16,15 @@ For all these questions, it is recommended you use the python interpreter and tr
     ```python
     ## put your corrected code below this line
    value = None
-   while value == "quit":
+   while value != "quit":
         value = input("Enter a value or quit: ")
         if value != "quit":
-    print("Your value is " + value)
+            print("Your value is " + value)
 
     ```
 
 2. The above code uses a None value to initialize the input variable. This works because python can let a variable be multiple types, but in some languages, you would have to match the type. Assuming you had to match the type (str), what would be a good default input value, that could never cause the loop to not run at least once? Provide reasoning for your logic as there are multiple correct answers. With that said, there is one that is more 'standard' than the rest, so feel free to openly discuss options that come to mind (you do not have to come up with the standard answer, but try to!). 
-   In this situation the str("quit") would guarantee that the loop runs at least once because the first line of the while loop is when the value equals "quit" so it will always run until the value is not quit. 
+   I have since learned that an empty string such as str("") is the best most standard way to make sure the loop runs at least once. 
 
 3. Write a small loop that will keep repeating until someone 
    enters a number greater than 0, and less than 5. It has to be
