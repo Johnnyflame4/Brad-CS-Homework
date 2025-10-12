@@ -3,7 +3,7 @@
 
 * Student: Brad WIng
 * Semester: Fall 2025
-* Link / URL to your github repo for this assignment: https://github.com/Johnnyflame4/Brad-CS-Homework/upload/Homework-04
+* Link / URL to your github repo for this assignment: https://github.com/Johnnyflame4/Brad-CS-Homework/tree/Homework-04
   
 Don't forget the above link. TAs will grade by going to your repo!
 

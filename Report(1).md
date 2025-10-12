@@ -39,12 +39,16 @@ For all these questions, it is recommended you use the python interpreter and tr
             if 0 < n < 5:
                 print("Your number is between 1 and 4")
                 break
-        print("Invalid input")
+            else:
+                print("Invalid input")
+        else:
+            print("Invalid input")
+    
 
    ```
 
 4. Draw a flow diagram for your solution to #3
-   
+   PDF file in Github repo
 
 5. Looking back at homework #2, we actually had a type of 'loop' in the provided code (look near the main function). First copy the bit of code that causes the loop.
     ```python
