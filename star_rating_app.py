@@ -67,6 +67,14 @@ def convert_str_movie_tuple(val: str) -> Tuple[str, int]:
         ('Princess Bride', 10)
         >>> convert_str_movie_tuple("   JurAssic shARk  ,    1  ")
         ('Jurassic Shark', 1)
+        >>> convert_str_movie_tuple("The Matrix,3")
+        ('The Matrix', 3)
+        >>> convert_str_movie_tuple("avatar,4")
+        ('Avatar', 4)
+        >>> convert_str_movie_tuple("THE GODFATHER,5")
+        ('The Godfather', 5)
+        >>> convert_str_movie_tuple("spider-man,2")
+        ('Spider-Man', 2)
 
     Args:
         val (str): String in the format of "movie,rating"
@@ -93,6 +101,16 @@ def clean_title(movie: str) -> str:
         'Princess Bride'
         >>> clean_title("it's a wonderful life")
         'It's A Wonderful Life'
+        >>> clean_title("the lord of the rings")
+        'The Lord Of The Rings'
+        >>> clean_title("   ")
+        ''
+        >>> clean_title("a")
+        'A'
+        >>> clean_title("spider-man: no way home")
+        'Spider-Man: No Way Home'
+        >>> clean_title("IT")
+        'It'
 
     See:
         https://docs.python.org/3/library/string.html#helper-functions
@@ -110,6 +128,24 @@ def convert_rating(val: int, min_stars: int = __MIN_STARS, max_stars: int = __MA
     to the rating. Any value over max_stars will only
     return max_stars stars, and any value under min_stars
     will return min_stars star.
+
+    Examples:
+        >>> convert_rating(3)
+        '***'
+        >>> convert_rating(5)
+        '*****'
+        >>> convert_rating(1)
+        '*'
+        >>> convert_rating(0)
+        '*'
+        >>> convert_rating(-5)
+        '*'
+        >>> convert_rating(10)
+        '*****'
+        >>> convert_rating(2, min_stars=1, max_stars=3)
+        '**'
+        >>> convert_rating(5, min_stars=2, max_stars=4)
+        '****'
 
     Args:
         val (int): the rating value
