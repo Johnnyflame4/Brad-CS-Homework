@@ -41,7 +41,7 @@ class TestDocFileView(unittest.TestCase):
     def test_read_file(self) -> None:
         """Reading a typical file, with multiple lines. No blank lines or extra whitespace."""
         self.assertEqual(
-            doc_file_view.read_file("auto_generated.txt"),
+            doc_file_view.read_file("../data/auto_generated.txt"),
             ("Racecar drivers enjoy their fast cars, zooming past radar traps,", 
             "their racecar's red color reflecting in their", 
             "rearview mirrors. Madam, said the racecar driver,",
