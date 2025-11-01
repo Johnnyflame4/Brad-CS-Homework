@@ -1,1 +1,0 @@
-{"lines": 5, "words": 34, "vowels": 65, "palindromes": 8, "sentence_palindromes": 1}
