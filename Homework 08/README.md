@@ -3,7 +3,7 @@
 
 * Student: Brad Wing
 * Semester: Fall 2025
-* Link / URL to your github repo for this assignment: 
+* Link / URL to your github repo for this assignment: https://github.com/Johnnyflame4/Brad-CS-Homework/tree/Homework-08
   
 Don't forget the above link. TAs will grade by going to your repo!
 
@@ -11,4 +11,4 @@ Don't forget the above link. TAs will grade by going to your repo!
 
 * List any other resources you used to help you complete the assignment (make sure to share good ones to the Tips,Tricks, and Resources channel in teams!):
   
-
+Github Copilot
