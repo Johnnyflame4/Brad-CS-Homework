@@ -2,7 +2,7 @@
 Homework 08: Document Statistics Program
 ===========================
 Course:   CS 5001
-Student:  Your Name
+Student:  Brad Wing
 
 Update this file by adding required functions.
 

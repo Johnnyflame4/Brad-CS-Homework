@@ -2,7 +2,7 @@
 Homework 08: File "View" For the Application
 ===========================
 Course:   CS 5001
-Student:  Your Name
+Student:  Brad Wing
 
 This file contains functions to help with manipulating files and JSON.
 """
