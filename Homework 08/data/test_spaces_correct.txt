@@ -1,6 +1,0 @@
-Line 1
-
-  Line 3 with spaces  
-
-Line 5
-  
