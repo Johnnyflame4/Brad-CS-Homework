@@ -1,10 +1,10 @@
 # Homework 09 Report
 
 1. Which Airlines have the most flights in 2015? How many flights did they have?
-   Southwest Airlines Co.      : 221586
+   Southwest Airlines Co.      : 221,586
 
 2. Which Airlines have the least flights in 2015? How many flights did they have?
-   Virgin America              : 10403
+   Virgin America              : 10,403
 
 3. Data is an important aspect of our society, and it is important to understand how to work with it. What are some ways you can see data being used in your future career?
    In cyber security, data is the thing that we are protecting, but also how we make decisions. We review data (logs in this case) to understand if the actions taken and executed on an IT system are considered a normal business process as well as by an authorized individual / user. 
@@ -17,10 +17,9 @@
 5. Provide output of you running `doctest` with the `-v` flag enabled (i.e. the output generated on your screen)
 
     ```
-PS C:\Users\Brad\Documents\VS Code Projects\Python Projects\Homework 09\homework09-Johnnyflame4\src> python -m doctest flight_counter.py -v
 Trying:
-    build_counters("../data/flights10.dat", {"AA": "American Airlines",                             "DL": "Delta Airlines", "UA": "United Airlines"})
-Expecting:
+    build_counters("../data/flights10.dat", {"AA": "American Airlines",                             "DL": "De
+lta Airlines", "UA": "United Airlines"})                                                                     Expecting:
     {'UA': 2, 'DL': 2}
 ok
 Trying:
@@ -55,45 +54,35 @@ Expecting:
     American Airlines: 10
     Delta Airlines:     5
     United Airlines:    3
-**********************************************************************
-File "C:\Users\Brad\Documents\VS Code Projects\Python Projects\Homework 09\homework09-Johnnyflame4\src\flight_counter.py", line 105, in flight_counter.print_counters
-Failed example:
-    print_counters(counters, airlines)                   # doctest: +NORMALIZE_WHITESPACE
-Expected:
-    American Airlines: 10
-    Delta Airlines:     5
-    United Airlines:    3
-Got:
-    American Airlines: 10
-    Delta Airlines   : 5
-    United Airlines  : 3
+ok
 2 items had no tests:
     flight_counter
     flight_counter.main
-2 items passed all tests:
+3 items passed all tests:
    1 test in flight_counter.build_counters
    1 test in flight_counter.load_airlines
-**********************************************************************
-1 item had failures:
-   1 of   3 in flight_counter.print_counters
+   3 tests in flight_counter.print_counters
 5 tests in 5 items.
-4 passed and 1 failed.
-***Test Failed*** 1 failure.
+5 passed.
+Test passed.
     ```
 
 6. Output of running `python3 flight_counter.py -h`, and what it means in your own words. (Note: windows is python, and file location may vary based on where you are running it. The above assume linux and running from the homework src directory)
 
     ```
-   Id     Duration CommandLine
-  --     -------- -----------
-   1        0.121 try { . "c:\Users\Brad\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\work… 
-   2        0.016 cd "c:\Users\Brad\Documents\VS Code Projects\Python Projects\Homework 09\homework09-Johnn… 
-   3        0.071 C:/Python313/python.exe flight_counter.py -h
-   4        0.044 python flight_counter.py -h
-   5        0.042 python flight_counter.py -h
+usage: flight_counter.py [-h] [-f FLIGHTS] [-a AIRLINES]
+
+Flight Counter
+
+options:
+  -h, --help            show this help message and exit
+  -f, --flights FLIGHTS
+                        The file containing the flight data.
+  -a, --airlines AIRLINES
+                        The file containing the airline data.
 
     ```
-
+This is to help the user understand how to use the flight counter program from the command line. h shows a help message. f allows you to specify what file contains the flight data. a allows you to specify what file contains the airline data. 
 
 ## Deeper Thinking
 

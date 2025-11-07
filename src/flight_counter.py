@@ -116,15 +116,19 @@ def print_counters(counters: Dict[str, int], airlines: Dict[str, str]) -> None:
         print("No flight data found.")
         return
     
-    # Sort by count (descending) then by airline name
-    sorted_airlines = sorted(counters.items(), key=lambda x: (-x[1], airlines.get(x[0], x[0])))
+    # Sort alphabetically by airline name
+    sorted_airlines = sorted(counters.items(), key=lambda x: airlines.get(x[0], x[0]))
     
-    # Find the longest airline name for formatting
-    max_length = max(len(airlines.get(code, code)) for code in counters.keys())
+    # Calculate the total width for alignment
+    total_width = 40
     
     for code, count in sorted_airlines:
         airline_name = airlines.get(code, code)
-        print(f"{airline_name:{max_length}}: {count}")
+        # Format count with commas
+        formatted_count = f"{count:,}"
+        # Create the full line with proper spacing
+        line = f"{airline_name}:{formatted_count:>{total_width - len(airline_name) - 1}}"
+        print(line)
 
 def main(flights: str, airlines: str) -> None:
     """The main function of the program."""

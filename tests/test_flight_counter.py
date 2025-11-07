@@ -60,6 +60,39 @@ class TestFlightCounter(unittest.TestCase):
         counters = flight_counter.build_counters("flights_4.dat", airlines)
         self.assertEqual(counters, {"MQ": 1, "US": 1, "DL": 1, "WN": 1})
 
+    def test_load_airlines_custom(self) -> None:
+        """Test load_airlines with custom test data"""
+        airlines = flight_counter.load_airlines("airlines_custom.dat")
+        expected = {
+            "XX": "Test Airlines Custom",
+            "YY": "Another Test Airline", 
+            "ZZ": "Third Test Airline Inc."
+        }
+        self.assertEqual(airlines, expected)
+
+    def test_build_counters_custom(self) -> None:
+        """Test build_counters with custom test data"""
+        airlines = flight_counter.load_airlines("airlines_custom.dat")
+        counters = flight_counter.build_counters("flights_custom.dat", airlines)
+        expected = {"XX": 3, "YY": 2, "ZZ": 1}  # XX123, XX789, XX303 = 3; YY456, YY202 = 2; ZZ101 = 1
+        self.assertEqual(counters, expected)
+
+    def test_load_airlines_small(self) -> None:
+        """Test load_airlines with another small custom file"""
+        airlines = flight_counter.load_airlines("airlines_small.dat")
+        expected = {
+            "AB": "Alpha Beta Airlines",
+            "CD": "Charlie Delta Airways"
+        }
+        self.assertEqual(airlines, expected)
+
+    def test_build_counters_small(self) -> None:
+        """Test build_counters with small custom dataset"""
+        airlines = flight_counter.load_airlines("airlines_small.dat")
+        counters = flight_counter.build_counters("flights_small.dat", airlines)
+        expected = {"AB": 3, "CD": 2}  # AB100, AB300, AB400 = 3; CD200, CD500 = 2
+        self.assertEqual(counters, expected)
+
 
     def test_program_run_large(self) -> None:
         """Test program run, large flights file, commas included
