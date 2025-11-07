@@ -3,8 +3,8 @@ Flight Counter
 
 A program that counts the number of flights for an airline given a file of flight data.
 
-NAME: <your name>
-SEMESTER: <your semester>
+NAME: Brad Wing
+SEMESTER: Fall 2025
 """
 from typing import Dict
 import argparse
@@ -39,6 +39,19 @@ def load_airlines(filename: str) -> Dict[str, str]:
         Dict[str, str]: A dictionary of airline codes and names.
     """
     airlines = {}
+    try:
+        with open(filename, 'r') as file:
+            for line in file:
+                line = line.strip()
+                if line and '::' in line:
+                    code, name = line.split('::', 1)
+                    airlines[code] = name
+    except FileNotFoundError:
+        print(f"Error: Could not find file {filename}")
+        sys.exit(1)
+    except Exception as e:
+        print(f"Error reading file {filename}: {e}")
+        sys.exit(1)
     return airlines
 
 
@@ -61,6 +74,25 @@ def build_counters(filename: str, airlines: Dict[str, str]) -> Dict[str, int]:
         Dict[str, int]: A dictionary of airline counters.
     """
     counters = {}
+    try:
+        with open(filename, 'r') as file:
+            for line in file:
+                line = line.strip()
+                if line and len(line) >= 2:
+                    # Extract the first two characters as the airline code
+                    airline_code = line[:2]
+                    # Only count if this airline code exists in our airlines dictionary
+                    if airline_code in airlines:
+                        if airline_code in counters:
+                            counters[airline_code] += 1
+                        else:
+                            counters[airline_code] = 1
+    except FileNotFoundError:
+        print(f"Error: Could not find file {filename}")
+        sys.exit(1)
+    except Exception as e:
+        print(f"Error reading file {filename}: {e}")
+        sys.exit(1)
     return counters
 
 
@@ -80,7 +112,19 @@ def print_counters(counters: Dict[str, int], airlines: Dict[str, str]) -> None:
         counters (Dict[str, int]): A dictionary of airline counters.
         airlines (Dict[str, str]): A dictionary of airline codes and names.
     """
-    pass
+    if not counters:
+        print("No flight data found.")
+        return
+    
+    # Sort by count (descending) then by airline name
+    sorted_airlines = sorted(counters.items(), key=lambda x: (-x[1], airlines.get(x[0], x[0])))
+    
+    # Find the longest airline name for formatting
+    max_length = max(len(airlines.get(code, code)) for code in counters.keys())
+    
+    for code, count in sorted_airlines:
+        airline_name = airlines.get(code, code)
+        print(f"{airline_name:{max_length}}: {count}")
 
 def main(flights: str, airlines: str) -> None:
     """The main function of the program."""
