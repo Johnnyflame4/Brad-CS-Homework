@@ -11,7 +11,6 @@ import argparse
 import sys
 
 
-
 def load_airlines(filename: str) -> Dict[str, str]:
     """Loads the airlines from the given file and returns a dictionary of airline codes and names.
 
@@ -115,13 +114,14 @@ def print_counters(counters: Dict[str, int], airlines: Dict[str, str]) -> None:
     if not counters:
         print("No flight data found.")
         return
-    
+
     # Sort alphabetically by airline name
-    sorted_airlines = sorted(counters.items(), key=lambda x: airlines.get(x[0], x[0]))
-    
+    sorted_airlines = sorted(
+        counters.items(), key=lambda x: airlines.get(x[0], x[0]))
+
     # Calculate the total width for alignment
     total_width = 40
-    
+
     for code, count in sorted_airlines:
         airline_name = airlines.get(code, code)
         # Format count with commas
@@ -129,6 +129,7 @@ def print_counters(counters: Dict[str, int], airlines: Dict[str, str]) -> None:
         # Create the full line with proper spacing
         line = f"{airline_name}:{formatted_count:>{total_width - len(airline_name) - 1}}"
         print(line)
+
 
 def main(flights: str, airlines: str) -> None:
     """The main function of the program."""

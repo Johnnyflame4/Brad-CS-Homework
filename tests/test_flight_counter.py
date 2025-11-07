@@ -1,27 +1,35 @@
+import flight_counter  # type: ignore
 import unittest
 import subprocess
 import re
 import sys
 import os
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../src')))
+sys.path.insert(0, os.path.abspath(
+    os.path.join(os.path.dirname(__file__), '../src')))
 
-import flight_counter # type: ignore
 
 # lambda function to make feedback messages easier to read
-common_msg = lambda msg, expected, actual: f"{msg}\nExpected: {expected}\nActual: {actual}"
+def common_msg(
+    msg, expected, actual): return f"{msg}\nExpected: {expected}\nActual: {actual}"
 
-clean_spaces = lambda string: re.sub(r"\s+", "", string)
+
+def clean_spaces(string): return re.sub(r"\s+", "", string)
+
 
 def lines_to_set(string: str) -> set:
     """Converts a string with newlines to a set of lines"""
     return set([clean_spaces(line) for line in string.splitlines()])
 
 # Double check class name, remember unit tests likes it to start with Test
+
+
 class TestFlightCounter(unittest.TestCase):
-    def test_build_airlines(self) -> None:  # notice method starts with the word test, and starts indented! 
+    # notice method starts with the word test, and starts indented!
+    def test_build_airlines(self) -> None:
         """Test build airlines with a smaller airlines file"""          # docstring
-        airlines = flight_counter.load_airlines("airlines_3.dat") # calls the function to test
-        self.assertEqual(   # assertsEquals is saying, compare these two values as equals 
+        airlines = flight_counter.load_airlines(
+            "airlines_3.dat")  # calls the function to test
+        self.assertEqual(   # assertsEquals is saying, compare these two values as equals
             airlines,       # actual value from the function
             {               # expected / correct answer
                 "AS": "Alaska Airlines Inc.",
@@ -42,7 +50,7 @@ class TestFlightCounter(unittest.TestCase):
                 "US": "US Airways Inc.",
                 "F9": "Frontier Airlines Inc.",
                 "B6": "JetBlue Airways",
-                
+
                 "AS": "Alaska Airlines Inc.",
                 "NK": "Spirit Air Lines",
                 "WN": "Southwest Airlines Co.",
@@ -65,7 +73,7 @@ class TestFlightCounter(unittest.TestCase):
         airlines = flight_counter.load_airlines("airlines_custom.dat")
         expected = {
             "XX": "Test Airlines Custom",
-            "YY": "Another Test Airline", 
+            "YY": "Another Test Airline",
             "ZZ": "Third Test Airline Inc."
         }
         self.assertEqual(airlines, expected)
@@ -73,8 +81,10 @@ class TestFlightCounter(unittest.TestCase):
     def test_build_counters_custom(self) -> None:
         """Test build_counters with custom test data"""
         airlines = flight_counter.load_airlines("airlines_custom.dat")
-        counters = flight_counter.build_counters("flights_custom.dat", airlines)
-        expected = {"XX": 3, "YY": 2, "ZZ": 1}  # XX123, XX789, XX303 = 3; YY456, YY202 = 2; ZZ101 = 1
+        counters = flight_counter.build_counters(
+            "flights_custom.dat", airlines)
+        # XX123, XX789, XX303 = 3; YY456, YY202 = 2; ZZ101 = 1
+        expected = {"XX": 3, "YY": 2, "ZZ": 1}
         self.assertEqual(counters, expected)
 
     def test_load_airlines_small(self) -> None:
@@ -90,13 +100,13 @@ class TestFlightCounter(unittest.TestCase):
         """Test build_counters with small custom dataset"""
         airlines = flight_counter.load_airlines("airlines_small.dat")
         counters = flight_counter.build_counters("flights_small.dat", airlines)
-        expected = {"AB": 3, "CD": 2}  # AB100, AB300, AB400 = 3; CD200, CD500 = 2
+        # AB100, AB300, AB400 = 3; CD200, CD500 = 2
+        expected = {"AB": 3, "CD": 2}
         self.assertEqual(counters, expected)
-
 
     def test_program_run_large(self) -> None:
         """Test program run, large flights file, commas included
-        
+
         This one may not work depending on how you are executing the program.
         You  may need to modify the paths below.
         """
