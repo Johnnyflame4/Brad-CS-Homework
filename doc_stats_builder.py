@@ -31,6 +31,14 @@ def get_number_lines(lines: tuple) -> int:
     Examples:
         >>> get_number_lines(('Hello', 'World'))
         2
+        >>> get_number_lines(())
+        0
+        >>> get_number_lines(('Single line',))
+        1
+        >>> get_number_lines(('Line 1', 'Line 2', 'Line 3', 'Line 4'))
+        4
+        >>> get_number_lines(('', '', ''))
+        3
 
     Args:
         lines (tuple): the lines of the document
@@ -52,6 +60,18 @@ def get_number_words(lines: tuple) -> int:
         2
         >>> get_number_words(('Aloha!', '-', 'World'))
         2
+        >>> get_number_words(())
+        0
+        >>> get_number_words(('',))
+        0
+        >>> get_number_words(('!!!', '---', '...'))
+        0
+        >>> get_number_words(('One two three', 'Four five'))
+        5
+        >>> get_number_words(('Hello!', 'World...', '!!!'))
+        2
+        >>> get_number_words(('The quick brown fox', 'jumps over the lazy dog'))
+        8
 
     Args:
         lines (tuple): the lines of the document
@@ -76,9 +96,22 @@ def get_vowel_count(lines: tuple) -> int:
     Examples:
         >>> get_vowel_count(('Hello', 'World'))
         3
-
         >>> get_vowel_count(('An old silent pond...', 'A frog jumps into the pond—', 'Splash! Silence again.', '- Matsuo Basho'))
         24
+        >>> get_vowel_count(())
+        0
+        >>> get_vowel_count(('',))
+        0
+        >>> get_vowel_count(('aeiou',))
+        5
+        >>> get_vowel_count(('AEIOU',))
+        5
+        >>> get_vowel_count(('bcdfg',))
+        0
+        >>> get_vowel_count(('Python programming',))
+        5
+        >>> get_vowel_count(('!!!', '...'))
+        0
 
     Args:
         lines (tuple): the lines of the document
@@ -102,11 +135,21 @@ def get_word_palindromes(lines: tuple) -> int:
     Examples:
         >>> get_word_palindromes(('Hello', 'World'))
         0
-
         >>> get_word_palindromes(('An old silent pond...', 'A frog jumps into the pond—', 'Splash! Silence again.', '- Matsuo Basho'))
         1
-
         >>> get_word_palindromes(('raceCar', 'kayak!', 'sator arepo tenet opera rotas!'))
+        3
+        >>> get_word_palindromes(())
+        0
+        >>> get_word_palindromes(('',))
+        0
+        >>> get_word_palindromes(('mom', 'dad', 'sister'))
+        2
+        >>> get_word_palindromes(('noon', 'level', 'radar', 'civic'))
+        4
+        >>> get_word_palindromes(('Was it a car or a cat I saw',))
+        1
+        >>> get_word_palindromes(('racecar!!!', '...level...', 'RADAR'))
         3
 
     Args:
@@ -132,12 +175,24 @@ def get_sentence_palindromes(lines: tuple) -> int:
     Examples:
         >>> get_sentence_palindromes(('Hello', 'World'))
         0
-
         >>> get_sentence_palindromes(('An old silent pond...', 'A frog jumps into the pond—', 'Splash! Silence again.', '- Matsuo Basho'))
         0
-
         >>> get_sentence_palindromes(('A raceCar', 'A kayak!', 'sator arepo tenet opera rotas!'))
         1
+        >>> get_sentence_palindromes(())
+        0
+        >>> get_sentence_palindromes(('',))
+        0
+        >>> get_sentence_palindromes(('racecar', 'madam', 'civic'))
+        3
+        >>> get_sentence_palindromes(('aba', 'level', 'noon'))
+        3
+        >>> get_sentence_palindromes(('Hello world', 'Not a palindrome'))
+        0
+        >>> get_sentence_palindromes(('a', 'i', 'mom', 'dad'))
+        4
+        >>> get_sentence_palindromes(('Never odd or even!', 'Not a palindrome', 'Was it a rat I saw?'))
+        2
 
     Args:
         lines (tuple): the lines of the document

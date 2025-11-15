@@ -28,6 +28,28 @@ def is_palindrome(word: str) -> bool:
         True
         >>> is_palindrome("ab")
         False
+        >>> is_palindrome("kayak")
+        True
+        >>> is_palindrome("level")
+        True
+        >>> is_palindrome("civic")
+        True
+        >>> is_palindrome("radar")
+        True
+        >>> is_palindrome("python")
+        False
+        >>> is_palindrome("madam")
+        True
+        >>> is_palindrome("refer")
+        True
+        >>> is_palindrome("abc")
+        False
+        >>> is_palindrome("aba")
+        True
+        >>> is_palindrome("abba")
+        True
+        >>> is_palindrome("abcba")
+        True
 
     Args:
         word (str): the word to check
@@ -62,6 +84,28 @@ def count_vowels(word: str) -> int:
         1
         >>> count_vowels('')
         0
+        >>> count_vowels('python')
+        1
+        >>> count_vowels('rhythm')
+        0
+        >>> count_vowels('bcdfg')
+        0
+        >>> count_vowels('AaEeIiOoUu')
+        10
+        >>> count_vowels('beautiful')
+        5
+        >>> count_vowels('Programming')
+        3
+        >>> count_vowels('education')
+        5
+        >>> count_vowels('xyz')
+        0
+        >>> count_vowels('I')
+        1
+        >>> count_vowels('why')
+        0
+        >>> count_vowels('HELLO WORLD')
+        3
 
     Args:
         word (str): the word to check
@@ -87,6 +131,32 @@ def clean_word(word: str) -> str:
         'hello'
         >>> clean_word('World...')
         'world'
+        >>> clean_word('Python123')
+        'python123'
+        >>> clean_word('!!!')
+        ''
+        >>> clean_word('')
+        ''
+        >>> clean_word('A')
+        'a'
+        >>> clean_word('race-car')
+        'racecar'
+        >>> clean_word('HELLO!!!')
+        'hello'
+        >>> clean_word("can't")
+        'cant'
+        >>> clean_word('...test...')
+        'test'
+        >>> clean_word('123abc456')
+        '123abc456'
+        >>> clean_word('!!!hello***world!!!')
+        'helloworld'
+        >>> clean_word('@#$%')
+        ''
+        >>> clean_word('Test123!')
+        'test123'
+        >>> clean_word('HeLLo-WoRLd!!!')
+        'helloworld'
 
     See:
         https://docs.python.org/3/library/stdtypes.html#str.isalnum
