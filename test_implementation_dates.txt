@@ -1,0 +1,146 @@
+=== Test: Implementation Date Tracking ===
+
+Testing the intelligent implementation date logic to ensure dates are set correctly
+and preserved appropriately across different status transitions.
+
+=== Test 1: Moving to 'Implemented' Sets Date ===
+
+Action: Update control 3.1.1 from "Not Started" to "Implemented"
+
+Enter control ID (e.g., 3.1.1): 3.1.1
+
+Status options: Not Started, In Progress, Implemented, Verified
+Enter new status: Implemented
+Enter notes (optional): Initial implementation of user identification
+
+Data saved to C:\Users\Brad\Documents\VS Code Projects\Python Projects\Final CS Project\compliance_data.json
+Updated 3.1.1 to Implemented
+
+Control: 3.1.1
+Status: Implemented
+Implementation Date: 2025-11-22
+Previous Implementation Date: None
+
+Result: ✓ Implementation date automatically set when moving to 'Implemented'
+Result: ✓ Date reflects when control first achieved compliance status
+
+=== Test 2: Moving to 'Verified' Directly (Skipping 'Implemented') ===
+
+Action: Update control 3.1.2 from "Not Started" directly to "Verified"
+
+Enter control ID (e.g., 3.1.1): 3.1.2
+
+Status options: Not Started, In Progress, Implemented, Verified
+Enter new status: Verified
+Enter notes (optional): Control was already compliant, verified during initial audit
+
+Data saved to C:\Users\Brad\Documents\VS Code Projects\Python Projects\Final CS Project\compliance_data.json
+Updated 3.1.2 to Verified
+
+Control: 3.1.2
+Status: Verified
+Implementation Date: 2025-11-22
+Previous Implementation Date: None
+
+Result: ✓ Implementation date set even though 'Implemented' status was skipped
+Result: ✓ Handles workflow where controls go directly to Verified
+Result: ✓ Ensures all compliant controls have implementation dates
+
+=== Test 3: Moving from 'Implemented' to 'Verified' Preserves Date ===
+
+Action: Update control 3.1.1 from "Implemented" (already has date) to "Verified"
+
+Enter control ID (e.g., 3.1.1): 3.1.1
+Current implementation date: 2025-11-22
+
+Status options: Not Started, In Progress, Implemented, Verified
+Enter new status: Verified
+Enter notes (optional): Audit completed, control verified as compliant
+
+Data saved to C:\Users\Brad\Documents\VS Code Projects\Python Projects\Final CS Project\compliance_data.json
+Updated 3.1.1 to Verified
+
+Original implementation date: 2025-11-22
+Implementation date after moving to Verified: 2025-11-22
+
+Result: ✓ Implementation date preserved (not updated)
+Result: ✓ Date continues to reflect when control was first implemented
+Result: ✓ Historical accuracy maintained
+
+=== Test 4: Moving Back to 'In Progress' Then to 'Implemented' Again ===
+
+Action Part 1: Move control 3.1.1 from "Verified" back to "In Progress"
+
+Enter control ID (e.g., 3.1.1): 3.1.1
+
+Status options: Not Started, In Progress, Implemented, Verified
+Enter new status: In Progress
+Enter notes (optional): Configuration drift detected, needs remediation
+
+Data saved to C:\Users\Brad\Documents\VS Code Projects\Python Projects\Final CS Project\compliance_data.json
+Updated 3.1.1 to In Progress
+
+Status: In Progress
+Implementation date while 'In Progress': 2025-11-22
+
+Result: ✓ Implementation date retained even when moving to non-compliant status
+
+Action Part 2: Move control 3.1.1 from "In Progress" back to "Implemented"
+
+Enter control ID (e.g., 3.1.1): 3.1.1
+
+Status options: Not Started, In Progress, Implemented, Verified
+Enter new status: Implemented
+Enter notes (optional): Remediation complete, control re-implemented
+
+Data saved to C:\Users\Brad\Documents\VS Code Projects\Python Projects\Final CS Project\compliance_data.json
+Updated 3.1.1 to Implemented
+
+Implementation date before re-implementation: 2025-11-22
+Implementation date after re-implementation: 2025-11-22
+
+Result: ✓ Original implementation date preserved
+Result: ✓ Date not updated when returning to 'Implemented' status
+Result: ✓ Maintains record of initial achievement date
+
+=== Test 5: Control Never Implemented Stays Null ===
+
+Control: 3.1.20
+Status: Not Started
+Implementation Date: None
+
+Control: 3.2.3
+Status: In Progress
+Implementation Date: None
+
+Result: ✓ Controls at "Not Started" or "In Progress" have no implementation date
+Result: ✓ Date only set when reaching "Implemented" or "Verified" status
+
+=== Implementation Date Logic Summary ===
+
+The implementation date field follows these rules:
+
+1. ✓ Set ONLY when status changes to "Implemented" OR "Verified"
+2. ✓ Set ONLY if implementation_date is currently None
+3. ✓ Once set, NEVER updated again (preserved for historical accuracy)
+4. ✓ Works correctly even if "Implemented" is skipped
+5. ✓ Maintained even when status moves backward to non-compliant
+
+Code Implementation:
+```python
+if status in ["Implemented", "Verified"] and ctrl.implementation_date is None:
+    ctrl.implementation_date = datetime.now().strftime("%Y-%m-%d")
+```
+
+This ensures:
+- First achievement is recorded
+- Historical data integrity
+- Accurate compliance timelines for audits
+- No accidental overwrites
+
+=== All Tests Passed ===
+✓ Test 1: Date set when moving to Implemented
+✓ Test 2: Date set when moving directly to Verified
+✓ Test 3: Date preserved when moving from Implemented to Verified
+✓ Test 4: Date preserved through status changes back and forth
+✓ Test 5: No date set for non-compliant statuses

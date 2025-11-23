@@ -1,0 +1,53 @@
+=== Test: Family Summary ===
+
+Testing the family summary feature which groups controls by their security control family
+and shows implementation progress for each family.
+
+Setup: Updated several controls across different families to demonstrate grouping
+
+Updated Controls:
+- 3.1.1 → Implemented (Access Control family)
+- 3.1.2 → Implemented (Access Control family)
+- 3.1.3 → Verified (Access Control family)
+- 3.3.1 → Implemented (Audit and Accountability family)
+- 3.3.2 → Implemented (Audit and Accountability family)
+- 3.5.1 → Implemented (Identification and Authentication family)
+- 3.13.1 → Verified (System and Communications Protection family)
+
+=== NIST 800-171 / CMMC Compliance Tracker ===
+Enter your choice (1-7): 3
+
+=== Summary by Control Family ===
+Access Control has 3 of 22 controls implemented
+Awareness and Training has 0 of 3 controls implemented
+Audit and Accountability has 2 of 9 controls implemented
+Configuration Management has 0 of 9 controls implemented
+Identification and Authentication has 1 of 11 controls implemented
+Incident Response has 0 of 3 controls implemented
+Maintenance has 0 of 3 controls implemented
+Media Protection has 0 of 9 controls implemented
+Personnel Security has 0 of 2 controls implemented
+Physical Protection has 0 of 6 controls implemented
+Risk Assessment has 0 of 3 controls implemented
+Security Assessment has 0 of 4 controls implemented
+System and Communications Protection has 1 of 20 controls implemented
+System and Information Integrity has 0 of 6 controls implemented
+
+=== Analysis ===
+Total Families: 14
+Families with progress: 4 (Access Control, Audit and Accountability, Identification and Authentication, System and Communications Protection)
+Families with no progress: 10
+
+Progress Breakdown:
+- Access Control: 13.6% complete (3/22 controls)
+- Audit and Accountability: 22.2% complete (2/9 controls)
+- Identification and Authentication: 9.1% complete (1/11 controls)
+- System and Communications Protection: 5.0% complete (1/20 controls)
+
+=== Key Insights ===
+✓ Family summary provides quick overview of compliance gaps
+✓ Helps prioritize which families need more attention
+✓ Shows that Audit and Accountability has highest percentage completion (22.2%)
+✓ System and Communications Protection has most controls (20) but low completion (5%)
+✓ Access Control has good progress (3 controls) but many remaining (19 more needed)
+✓ 10 families have zero implementation, highlighting areas needing immediate focus

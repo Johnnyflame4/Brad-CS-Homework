@@ -1,0 +1,126 @@
+=== Test: Case-Insensitive Status Input ===
+
+Testing various case combinations for status input:
+All test cases should be accepted and properly normalized using .title() method
+
+=== Test Case 1: All Lowercase ===
+Input: 'implemented'
+After .title() transformation: 'Implemented'
+Result: ✓ Successfully matched valid status
+
+=== NIST 800-171 / CMMC Compliance Tracker ===
+Enter your choice (1-7): 5
+Enter control ID (e.g., 3.1.1): 3.1.4
+
+Status options: Not Started, In Progress, Implemented, Verified
+Enter new status: implemented
+Enter notes (optional): Testing all lowercase input
+Data saved to C:\Users\Brad\Documents\VS Code Projects\Python Projects\Final CS Project\compliance_data.json
+Updated 3.1.4 to Implemented
+
+=== Test Case 2: All Uppercase ===
+Input: 'IMPLEMENTED'
+After .title() transformation: 'Implemented'
+Result: ✓ Successfully matched valid status
+
+Enter control ID (e.g., 3.1.1): 3.1.5
+
+Status options: Not Started, In Progress, Implemented, Verified
+Enter new status: IMPLEMENTED
+Enter notes (optional): Testing all uppercase input
+Data saved to C:\Users\Brad\Documents\VS Code Projects\Python Projects\Final CS Project\compliance_data.json
+Updated 3.1.5 to Implemented
+
+=== Test Case 3: Mixed Case ===
+Input: 'ImPlEmEnTeD'
+After .title() transformation: 'Implemented'
+Result: ✓ Successfully matched valid status
+
+Enter control ID (e.g., 3.1.1): 3.1.6
+
+Status options: Not Started, In Progress, Implemented, Verified
+Enter new status: ImPlEmEnTeD
+Enter notes (optional): Testing mixed case input
+Data saved to C:\Users\Brad\Documents\VS Code Projects\Python Projects\Final CS Project\compliance_data.json
+Updated 3.1.6 to Implemented
+
+=== Test Case 4: Multi-word Status - Lowercase ===
+Input: 'in progress'
+After .title() transformation: 'In Progress'
+Result: ✓ Successfully matched valid status
+
+Enter control ID (e.g., 3.1.1): 3.1.7
+
+Status options: Not Started, In Progress, Implemented, Verified
+Enter new status: in progress
+Enter notes (optional): Testing lowercase multi-word input
+Data saved to C:\Users\Brad\Documents\VS Code Projects\Python Projects\Final CS Project\compliance_data.json
+Updated 3.1.7 to In Progress
+
+=== Test Case 5: Multi-word Status - Uppercase ===
+Input: 'IN PROGRESS'
+After .title() transformation: 'In Progress'
+Result: ✓ Successfully matched valid status
+
+Enter control ID (e.g., 3.1.1): 3.1.8
+
+Status options: Not Started, In Progress, Implemented, Verified
+Enter new status: IN PROGRESS
+Enter notes (optional): Testing uppercase multi-word input
+Data saved to C:\Users\Brad\Documents\VS Code Projects\Python Projects\Final CS Project\compliance_data.json
+Updated 3.1.8 to In Progress
+
+=== Test Case 6: Lowercase 'verified' ===
+Input: 'verified'
+After .title() transformation: 'Verified'
+Result: ✓ Successfully matched valid status
+
+Enter control ID (e.g., 3.1.1): 3.1.9
+
+Status options: Not Started, In Progress, Implemented, Verified
+Enter new status: verified
+Enter notes (optional): Testing lowercase verified
+Data saved to C:\Users\Brad\Documents\VS Code Projects\Python Projects\Final CS Project\compliance_data.json
+Updated 3.1.9 to Verified
+
+=== Test Case 7: Uppercase 'VERIFIED' ===
+Input: 'VERIFIED'
+After .title() transformation: 'Verified'
+Result: ✓ Successfully matched valid status
+
+Enter control ID (e.g., 3.1.1): 3.1.10
+
+Status options: Not Started, In Progress, Implemented, Verified
+Enter new status: VERIFIED
+Enter notes (optional): Testing uppercase verified
+Data saved to C:\Users\Brad\Documents\VS Code Projects\Python Projects\Final CS Project\compliance_data.json
+Updated 3.1.10 to Verified
+
+=== Test Case 8: 'not started' ===
+Input: 'not started'
+After .title() transformation: 'Not Started'
+Result: ✓ Successfully matched valid status
+
+Enter control ID (e.g., 3.1.1): 3.1.11
+
+Status options: Not Started, In Progress, Implemented, Verified
+Enter new status: not started
+Enter notes (optional): Testing lowercase not started
+Data saved to C:\Users\Brad\Documents\VS Code Projects\Python Projects\Final CS Project\compliance_data.json
+Updated 3.1.11 to Not Started
+
+=== Test Case 9: Invalid Status ===
+Input: 'invalid status'
+After .title() transformation: 'Invalid Status'
+Result: ✗ Not in valid status list
+
+Status options: Not Started, In Progress, Implemented, Verified
+Enter new status: invalid status
+Error: Invalid status. Must be one of: Not Started, In Progress, Implemented, Verified
+Please try again.
+
+=== Conclusion ===
+✓ All 8 valid case variations were successfully accepted and normalized
+✓ The .title() method properly converts input to title case format
+✓ Invalid statuses are properly rejected with clear error messages
+✓ User experience improved - users don't need to worry about exact capitalization

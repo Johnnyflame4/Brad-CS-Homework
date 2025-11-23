@@ -1,0 +1,29 @@
+=== Test: Fresh Installation ===
+Running: python cmmc_tracker_reformatted.py
+Selected Option: 2 (Get SPRS Score)
+
+Reading from sheet: 'SP 800-171 Requirements'
+Successfully loaded 110 controls from file
+
+=== NIST 800-171 / CMMC Compliance Tracker ===
+1. Check CMMC Level Status
+2. Get SPRS Score
+3. View Summary by Family
+4. Add Evidence
+5. Update Control Status
+6. Export to Excel
+7. Save and Exit
+
+Enter your choice (1-7): 2
+
+=== SPRS Score ===
+Current SPRS Score: -203
+
+=== Explanation ===
+With a fresh installation, all 110 controls are in 'Not Started' status.
+SPRS scoring starts at 110 points (perfect score) and deducts points for non-compliant controls.
+Each control has an associated point value (typically -1, -3, or -5 points).
+With all controls at 'Not Started', the maximum deduction occurs, resulting in a score of -203.
+
+This demonstrates that the organization has not yet implemented any NIST 800-171 controls
+and has significant work ahead to achieve compliance.

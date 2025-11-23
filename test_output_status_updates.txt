@@ -1,0 +1,119 @@
+=== Test: Control Status Updates ===
+
+Testing various status update scenarios including validation and error handling
+
+=== Test 1: Valid Status Update ===
+=== NIST 800-171 / CMMC Compliance Tracker ===
+Enter your choice (1-7): 5
+
+Enter control ID (e.g., 3.1.1): 3.1.1
+
+Status options: Not Started, In Progress, Implemented, Verified
+Enter new status: Implemented
+Enter notes (optional): Password policy with 14-character minimum requirement enforced
+
+Data saved to C:\Users\Brad\Documents\VS Code Projects\Python Projects\Final CS Project\compliance_data.json
+Updated 3.1.1 to Implemented
+Implementation date set to: 2025-11-22
+
+Result: ✓ Control updated successfully
+Result: ✓ Implementation date automatically set
+
+=== Test 2: Invalid Control ID ===
+Enter your choice (1-7): 5
+
+Enter control ID (e.g., 3.1.1): 99.99.99
+
+Error: Invalid control ID. Control does not exist.
+Please enter a valid control ID (e.g., 3.1.1, 3.14.7)
+
+Result: ✓ Invalid control ID properly rejected with helpful error message
+
+=== Test 3: Empty Control ID ===
+Enter your choice (1-7): 5
+
+Enter control ID (e.g., 3.1.1): 
+
+Error: Control ID cannot be empty
+
+Result: ✓ Empty input properly validated
+
+=== Test 4: Updating to 'Verified' Directly (Skipping 'Implemented') ===
+Enter your choice (1-7): 5
+
+Enter control ID (e.g., 3.1.1): 3.2.1
+
+Status options: Not Started, In Progress, Implemented, Verified
+Enter new status: Verified
+Enter notes (optional): Skipped Implemented status, went directly to Verified after audit
+
+Data saved to C:\Users\Brad\Documents\VS Code Projects\Python Projects\Final CS Project\compliance_data.json
+Updated 3.2.1 to Verified
+Implementation date set to: 2025-11-22
+
+Result: ✓ Implementation date automatically set even when skipping 'Implemented' status
+Result: ✓ This ensures implementation date is captured regardless of workflow path
+
+=== Test 5: Moving from 'Implemented' to 'Verified' ===
+Enter your choice (1-7): 5
+
+Enter control ID (e.g., 3.1.1): 3.1.1
+Current status: Implemented
+Current implementation date: 2025-11-22
+
+Status options: Not Started, In Progress, Implemented, Verified
+Enter new status: Verified
+Enter notes (optional): Audit completed, control verified
+
+Data saved to C:\Users\Brad\Documents\VS Code Projects\Python Projects\Final CS Project\compliance_data.json
+Updated 3.1.1 to Verified
+Implementation date after update: 2025-11-22
+
+Result: ✓ Implementation date preserved (not overwritten)
+Result: ✓ Original date maintained to reflect when control was first implemented
+
+=== Test 6: Moving from 'Verified' Back to 'In Progress' ===
+Enter your choice (1-7): 5
+
+Enter control ID (e.g., 3.1.1): 3.1.1
+Current status: Verified
+Current implementation date: 2025-11-22
+
+Status options: Not Started, In Progress, Implemented, Verified
+Enter new status: In Progress
+Enter notes (optional): Needs remediation, no longer compliant
+
+Data saved to C:\Users\Brad\Documents\VS Code Projects\Python Projects\Final CS Project\compliance_data.json
+Updated 3.1.1 to In Progress
+Implementation date after update: 2025-11-22
+
+Result: ✓ Implementation date preserved even when moving backwards
+Result: ✓ This maintains historical record of when control was first achieved
+
+=== Test 7: Invalid Status Input with Retry ===
+Enter your choice (1-7): 5
+
+Enter control ID (e.g., 3.1.1): 3.3.1
+
+Status options: Not Started, In Progress, Implemented, Verified
+Enter new status: Complete
+Error: Invalid status. Must be one of: Not Started, In Progress, Implemented, Verified
+Please try again.
+
+Status options: Not Started, In Progress, Implemented, Verified
+Enter new status: Implemented
+Enter notes (optional): Audit logging configured and tested
+
+Data saved to C:\Users\Brad\Documents\VS Code Projects\Python Projects\Final CS Project\compliance_data.json
+Updated 3.3.1 to Implemented
+
+Result: ✓ Invalid status rejected with clear error message
+Result: ✓ User prompted to try again (loop continues until valid input)
+Result: ✓ Valid input on retry accepted successfully
+
+=== Summary ===
+✓ All validation tests passed
+✓ Error messages are clear and helpful
+✓ Implementation date logic works correctly for all scenarios
+✓ Date preservation prevents accidental overwrites
+✓ User feedback is informative and actionable
